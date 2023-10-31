@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import Header from "./Header";
 import NotFound from "./NotFound";
 import DeckList from "./DeckList";
-import { listDecks } from "../utils/api/index";
+import CreateDeck from "./CreateDeck";
+import { listDecks, createDeck } from "../utils/api/index";
 
 function Layout() {
   // State of user's decks
   const [decks, setDecks] = useState([]);
   const [error, setError] = useState(undefined);
+
+  // Handlers for decks
+  const history = useHistory();
+  const handleCreateDeck = async (formData) => {
+    const newDeck = await createDeck(formData);
+    console.log(`handleCreateDeck :: new deck ID = ${newDeck.id}`);
+    setDecks([...decks, newDeck]);
+    history.push(`/decks/${newDeck.id}`);
+  };
 
   // Fetch the list of decks from the DB:
   useEffect(() => {
@@ -29,6 +39,14 @@ function Layout() {
         <Switch>
           <Route exact path="/">
             <DeckList decks={decks} />
+          </Route>
+
+          <Route exact path="/decks/new">
+            <CreateDeck handleCreateDeck={handleCreateDeck} />
+          </Route>
+
+          <Route path="/decks/:deckId">
+            <p>This will show info about a specific Deck</p>
           </Route>
 
           <Route>

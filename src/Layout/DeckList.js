@@ -1,6 +1,7 @@
 import React from "react";
 import DeckListItem from "./DeckListItem";
 import Card from "react-bootstrap/Card";
+import CreateDeckButton from "./CreateDeckButton";
 
 function DeckList({ decks }) {
   const listOfDecks = decks.map((deck) => (
@@ -24,7 +25,12 @@ function DeckList({ decks }) {
     </Card>
   );
 
-  return <>{listOfDecks.length > 0 ? listOfDecks : noDecksFound}</>;
+  return (
+    <>
+      <CreateDeckButton />
+      {listOfDecks.length > 0 ? listOfDecks : noDecksFound}
+    </>
+  );
 }
 
 export default DeckList;
