@@ -4,7 +4,7 @@ import Header from "./Header";
 import NotFound from "./NotFound";
 import DeckList from "./DeckList";
 import CreateDeck from "./CreateDeck";
-import { listDecks, createDeck } from "../utils/api/index";
+import { listDecks, createDeck, deleteDeck } from "../utils/api/index";
 
 function Layout() {
   // State of user's decks
@@ -15,9 +15,25 @@ function Layout() {
   const history = useHistory();
   const handleCreateDeck = async (formData) => {
     const newDeck = await createDeck(formData);
-    console.log(`handleCreateDeck :: new deck ID = ${newDeck.id}`);
     setDecks([...decks, newDeck]);
     history.push(`/decks/${newDeck.id}`);
+  };
+
+  const handleDeleteDeck = async (deckId) => {
+    const result = window.confirm(
+      "Delete this deck?\n\nYou will not be able to recover it."
+    );
+    if (result) {
+      try {
+        await deleteDeck(deckId);
+        setDecks((currentDecks) =>
+          currentDecks.filter((deck) => deck.id !== deckId)
+        );
+        history.push(`/`);
+      } catch (error) {
+        console.error("Error deleting deck:", error);
+      }
+    }
   };
 
   // Fetch the list of decks from the DB:
@@ -38,7 +54,7 @@ function Layout() {
       <div className="container">
         <Switch>
           <Route exact path="/">
-            <DeckList decks={decks} />
+            <DeckList decks={decks} handleDeleteDeck={handleDeleteDeck} />
           </Route>
 
           <Route exact path="/decks/new">

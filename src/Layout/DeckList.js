@@ -3,7 +3,7 @@ import DeckListItem from "./DeckListItem";
 import Card from "react-bootstrap/Card";
 import CreateDeckButton from "./CreateDeckButton";
 
-function DeckList({ decks }) {
+function DeckList({ decks, handleDeleteDeck }) {
   const listOfDecks = decks.map((deck) => (
     <DeckListItem
       key={deck.id}
@@ -11,6 +11,7 @@ function DeckList({ decks }) {
       name={deck.name}
       count={deck.cards.length}
       description={deck.description}
+      handleDeleteDeck={handleDeleteDeck}
     />
   ));
 

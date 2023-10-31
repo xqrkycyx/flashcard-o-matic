@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-// import { Link, Route, useParams, useRouteMatch } from "react-router-dom";
-
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { TrashFill, EyeFill, BookHalf } from "react-bootstrap-icons";
 
-export const DeckListItem = ({ id, name, description, count }) => {
+export const DeckListItem = ({
+  id,
+  name,
+  description,
+  count,
+  handleDeleteDeck,
+}) => {
   return (
     <Card className="m-2">
       <Card.Body>
@@ -24,7 +28,11 @@ export const DeckListItem = ({ id, name, description, count }) => {
             </Button>
           </div>
           <div>
-            <Button variant="danger" className="m-2">
+            <Button
+              variant="danger"
+              className="m-2"
+              onClick={() => handleDeleteDeck(id)}
+            >
               <TrashFill />
             </Button>
           </div>
