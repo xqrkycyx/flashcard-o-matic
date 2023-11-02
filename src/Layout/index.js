@@ -4,19 +4,41 @@ import Header from "./Header";
 import NotFound from "./NotFound";
 import DeckList from "./DeckList";
 import CreateDeck from "./CreateDeck";
-import { listDecks, createDeck, deleteDeck } from "../utils/api/index";
+import {
+  listDecks,
+  createDeck,
+  deleteDeck,
+  updateDeck,
+} from "../utils/api/index";
+import ViewDeck from "./ViewDeck";
 
 function Layout() {
   // State of user's decks
   const [decks, setDecks] = useState([]);
   const [error, setError] = useState(undefined);
+  // Set a state variable to toggle after API changes (Create, Delete, Edit deck)
+  // which should trigger an API fetch (for list of decks or single deck) in useEffect
+  // in this and child components (e.g. View Deck page)
+  const [deckUpdateToggle, setDeckUpdateToggle] = useState(false);
 
   // Handlers for decks
   const history = useHistory();
   const handleCreateDeck = async (formData) => {
-    const newDeck = await createDeck(formData);
-    setDecks([...decks, newDeck]);
-    history.push(`/decks/${newDeck.id}`);
+    const { id } = await createDeck(formData); // response returns { name, description, id }
+    setDeckUpdateToggle(!deckUpdateToggle); // Trigger useEffect to fetch API deck data & re-render
+    history.push(`/decks/${id}`);
+  };
+
+  const handleEditDeck = async (deck, formData) => {
+    const { name, description, ...partialUpdatedDeck } = deck;
+    const updatedDeckObj = {
+      ...partialUpdatedDeck,
+      name: formData.name,
+      description: formData.description,
+    };
+    const updatedDeckFromAPI = await updateDeck(updatedDeckObj); // response returns { name, description, id }
+    setDeckUpdateToggle(!deckUpdateToggle); // Trigger useEffect hooks on homepage and View Deck page
+    history.push(`/decks/${updatedDeckFromAPI.id}`);
   };
 
   const handleDeleteDeck = async (deckId) => {
@@ -26,9 +48,7 @@ function Layout() {
     if (result) {
       try {
         await deleteDeck(deckId);
-        setDecks((currentDecks) =>
-          currentDecks.filter((deck) => deck.id !== deckId)
-        );
+        setDeckUpdateToggle(!deckUpdateToggle); // Trigger useEffect hooks (for updated API data) in index & ViewDeck components
         history.push(`/`);
       } catch (error) {
         console.error("Error deleting deck:", error);
@@ -41,7 +61,7 @@ function Layout() {
     const abortController = new AbortController();
     listDecks(abortController.signal).then(setDecks).catch(setError);
     return () => abortController.abort();
-  }, []);
+  }, [deckUpdateToggle]);
 
   // Handle error for initial fetch of decks
   if (error) {
@@ -62,7 +82,11 @@ function Layout() {
           </Route>
 
           <Route path="/decks/:deckId">
-            <p>This will show info about a specific Deck</p>
+            <ViewDeck
+              handleDeleteDeck={handleDeleteDeck}
+              handleEditDeck={handleEditDeck}
+              deckUpdateToggle={deckUpdateToggle}
+            />
           </Route>
 
           <Route>

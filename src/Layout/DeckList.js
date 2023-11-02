@@ -9,7 +9,7 @@ function DeckList({ decks, handleDeleteDeck }) {
       key={deck.id}
       id={deck.id}
       name={deck.name}
-      count={deck.cards.length}
+      cardCount={deck.cards.length}
       description={deck.description}
       handleDeleteDeck={handleDeleteDeck}
     />
