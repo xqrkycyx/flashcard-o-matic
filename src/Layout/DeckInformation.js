@@ -6,7 +6,11 @@ import { TrashFill, PencilFill, BookHalf, PlusLg } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import { useRouteMatch } from "react-router-dom";
 
-export const DeckInformation = ({ deck, handleDeleteDeck }) => {
+export const DeckInformation = ({
+  deck,
+  handleDeleteDeck,
+  handleDeleteCard,
+}) => {
   const { url } = useRouteMatch();
 
   return (
@@ -50,7 +54,7 @@ export const DeckInformation = ({ deck, handleDeleteDeck }) => {
       </div>
 
       <h3>Cards</h3>
-      <CardList deck={deck} />
+      <CardList deck={deck} handleDeleteCard={handleDeleteCard} />
     </>
   );
 };

@@ -14,6 +14,7 @@ function ViewDeck({
   deckUpdateToggle,
   handleEditCard,
   handleAddCard,
+  handleDeleteCard,
 }) {
   const [deck, setDeck] = useState({});
   const [error, setError] = useState(undefined);
@@ -53,7 +54,11 @@ function ViewDeck({
         </Route>
 
         <Route exact path={`${url}`}>
-          <DeckInformation deck={deck} handleDeleteDeck={handleDeleteDeck} />
+          <DeckInformation
+            deck={deck}
+            handleDeleteDeck={handleDeleteDeck}
+            handleDeleteCard={handleDeleteCard}
+          />
         </Route>
       </>
     );

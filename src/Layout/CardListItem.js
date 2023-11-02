@@ -5,7 +5,7 @@ import { PencilFill, TrashFill } from "react-bootstrap-icons";
 import { useRouteMatch } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-export const CardListItem = ({ front, back, id }) => {
+export const CardListItem = ({ front, back, id, handleDeleteCard }) => {
   const { url } = useRouteMatch();
 
   return (
@@ -21,7 +21,11 @@ export const CardListItem = ({ front, back, id }) => {
               <PencilFill /> Edit
             </Button>
           </Link>
-          <Button variant="danger" className="m-2">
+          <Button
+            onClick={() => handleDeleteCard(id)}
+            variant="danger"
+            className="m-2"
+          >
             <TrashFill />
           </Button>
         </div>

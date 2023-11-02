@@ -11,6 +11,7 @@ import {
   updateDeck,
   updateCard,
   createCard,
+  deleteCard,
 } from "../utils/api/index";
 import ViewDeck from "./ViewDeck";
 
@@ -78,6 +79,20 @@ function Layout() {
     history.push(`/decks/${deckId}/cards/new`);
   };
 
+  const handleDeleteCard = async (cardId) => {
+    const result = window.confirm(
+      "Delete this card?\n\nYou will not be able to recover it."
+    );
+    if (result) {
+      try {
+        await deleteCard(cardId);
+        setDeckUpdateToggle(!deckUpdateToggle); // Trigger useEffect hooks (for updated API data) in index & ViewDeck components
+      } catch (error) {
+        console.error("Error deleting card:", error);
+      }
+    }
+  };
+
   // Initial data fetch for list of user's decks from API:
   useEffect(() => {
     const abortController = new AbortController();
@@ -110,6 +125,7 @@ function Layout() {
               deckUpdateToggle={deckUpdateToggle}
               handleEditCard={handleEditCard}
               handleAddCard={handleAddCard}
+              handleDeleteCard={handleDeleteCard}
             />
           </Route>
 

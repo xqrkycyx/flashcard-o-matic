@@ -2,7 +2,7 @@ import React from "react";
 import CardListItem from "./CardListItem";
 import Card from "react-bootstrap/Card";
 
-function CardList({ deck }) {
+function CardList({ deck, handleDeleteCard }) {
   const hasCards = deck.cards.length > 0 ? true : false;
 
   let cardListItems;
@@ -13,6 +13,7 @@ function CardList({ deck }) {
         front={card.front}
         back={card.back}
         id={card.id}
+        handleDeleteCard={handleDeleteCard}
       />
     ));
   }
