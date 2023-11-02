@@ -6,8 +6,15 @@ import StudyDeck from "./StudyDeck";
 import EditDeck from "./EditDeck";
 import AddCard from "./AddCard";
 import DeckInformation from "./DeckInformation";
+import EditCard from "./EditCard";
 
-function ViewDeck({ handleDeleteDeck, handleEditDeck, deckUpdateToggle }) {
+function ViewDeck({
+  handleDeleteDeck,
+  handleEditDeck,
+  deckUpdateToggle,
+  handleEditCard,
+  handleAddCard,
+}) {
   const [deck, setDeck] = useState({});
   const [error, setError] = useState(undefined);
 
@@ -34,7 +41,15 @@ function ViewDeck({ handleDeleteDeck, handleEditDeck, deckUpdateToggle }) {
         </Route>
 
         <Route path={`${url}/cards/new`}>
-          <AddCard deck={deck} />
+          <AddCard deck={deck} handleAddCard={handleAddCard} />
+        </Route>
+
+        <Route path={`${url}/cards/:cardId/edit`}>
+          <EditCard
+            deck={deck}
+            cardFromParent={deck.cards[1]}
+            handleEditCard={handleEditCard}
+          />
         </Route>
 
         <Route exact path={`${url}`}>

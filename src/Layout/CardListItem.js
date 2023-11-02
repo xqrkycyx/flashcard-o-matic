@@ -2,8 +2,12 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { PencilFill, TrashFill } from "react-bootstrap-icons";
+import { useRouteMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export const CardListItem = ({ front, back }) => {
+export const CardListItem = ({ front, back, id }) => {
+  const { url } = useRouteMatch();
+
   return (
     <Card className="m-2">
       <Card.Body>
@@ -12,9 +16,11 @@ export const CardListItem = ({ front, back }) => {
           <Card.Text className="m-2 w-50">{back}</Card.Text>
         </div>
         <div className="d-flex float-right">
-          <Button variant="secondary" className="m-2">
-            <PencilFill /> Edit
-          </Button>
+          <Link to={`${url}/cards/${id}/edit`}>
+            <Button variant="secondary" className="m-2">
+              <PencilFill /> Edit
+            </Button>
+          </Link>
           <Button variant="danger" className="m-2">
             <TrashFill />
           </Button>

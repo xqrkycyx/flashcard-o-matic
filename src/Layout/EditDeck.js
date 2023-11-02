@@ -5,7 +5,9 @@ import Breadcrumbs from "./Breadcrumbs";
 function EditDeck({ deck, handleEditDeck }) {
   return (
     <>
-      <Breadcrumbs additionalItems={[deck.name]} />
+      <Breadcrumbs
+        additionalItems={[[deck.name, `/decks/${deck.id}`], [`Edit Deck`]]}
+      />
 
       <h1>Edit Deck: {deck.name}</h1>
       <DeckForm handleFormAction={handleEditDeck} deck={deck} />

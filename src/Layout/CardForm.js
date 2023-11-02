@@ -3,21 +3,22 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
-function DeckForm({ deck = null, handleFormAction }) {
+function CardForm({ card = null, handleFormAction }) {
   const initialFormState = {
-    // If form receives a Deck object as a prop (i.e., when
-    // building the "Edit" form for an existing deck), set
-    // this form's initial state to name & description props.
-    // Otherwise, form is being used for "Create Deck" page
+    // If form receives a Card object as a prop (i.e., when
+    // building the "Edit" form for an existing card), set
+    // this form's initial state to "front" & "back" props.
+    // Otherwise, form is being used for "Add Card" page
     // and should be initialized to empty strings (left blank).
-    name: deck?.name ?? "",
-    description: deck?.description ?? "",
+    front: card?.front ?? "",
+    back: card?.back ?? "",
   };
 
   const [formData, setFormData] = useState({ ...initialFormState });
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
+    console.log(`name: ${name} / value: ${value}`);
     setFormData({
       ...formData,
       [name]: value,
@@ -27,8 +28,8 @@ function DeckForm({ deck = null, handleFormAction }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Call handlers differently for Edit vs Create
-    if (deck) {
-      handleFormAction(deck, formData);
+    if (card) {
+      handleFormAction(card, formData);
     } else {
       handleFormAction(formData);
     }
@@ -40,30 +41,30 @@ function DeckForm({ deck = null, handleFormAction }) {
     <>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label>Name</Form.Label>
+          <Form.Label>Front</Form.Label>
           <Form.Control
             required
             type="text"
-            placeholder="Deck name"
-            controlid="name"
-            name="name"
+            placeholder="Front side of card"
+            controlid="front"
+            name="front"
             onChange={handleChange}
-            value={formData.name}
+            value={formData.front}
           />
           <br />
-          <Form.Label>Description</Form.Label>
+          <Form.Label>Back</Form.Label>
           <Form.Control
             required
             as="textarea"
             rows={4}
-            placeholder="Brief description of the deck"
-            controlid="description"
-            name="description"
+            placeholder="Back side of card"
+            controlid="back"
+            name="back"
             onChange={handleChange}
-            value={formData.description}
+            value={formData.back}
           />
         </Form.Group>
-        <Link to={deck !== null ? `/decks/${deck.id}` : "/"}>
+        <Link to={`/decks/${card.deckId}`}>
           <Button variant="secondary" className="m-2">
             Cancel
           </Button>
@@ -77,4 +78,4 @@ function DeckForm({ deck = null, handleFormAction }) {
   );
 }
 
-export default DeckForm;
+export default CardForm;

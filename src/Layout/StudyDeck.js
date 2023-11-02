@@ -4,7 +4,9 @@ import Breadcrumbs from "./Breadcrumbs";
 function StudyDeck({ deck }) {
   return (
     <>
-      <Breadcrumbs additionalItems={[deck.name]} />
+      <Breadcrumbs
+        additionalItems={[[deck.name, `/decks/${deck.id}`], `Study`]}
+      />
       <h1>Study: {deck.name}</h1>
       <p>(This is where the Study functionality will be built out)</p>
     </>

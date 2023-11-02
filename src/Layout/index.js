@@ -9,6 +9,7 @@ import {
   createDeck,
   deleteDeck,
   updateDeck,
+  updateCard,
 } from "../utils/api/index";
 import ViewDeck from "./ViewDeck";
 
@@ -56,7 +57,20 @@ function Layout() {
     }
   };
 
-  // Fetch the list of decks from the DB:
+  // Handlers for Cards
+  const handleEditCard = async (card, formData) => {
+    const { front, back, ...partialUpdatedDeck } = card;
+    const updatedCardObj = {
+      ...partialUpdatedDeck,
+      front: formData.front,
+      back: formData.back,
+    };
+    const updatedCardFromAPI = await updateCard(updatedCardObj);
+    setDeckUpdateToggle(!deckUpdateToggle); // Cause re-fetch of API for UI refresh
+    history.push(`/decks/${updatedCardFromAPI.deckId}`);
+  };
+
+  // Initial data fetch for list of user's decks from API:
   useEffect(() => {
     const abortController = new AbortController();
     listDecks(abortController.signal).then(setDecks).catch(setError);
@@ -86,6 +100,8 @@ function Layout() {
               handleDeleteDeck={handleDeleteDeck}
               handleEditDeck={handleEditDeck}
               deckUpdateToggle={deckUpdateToggle}
+              handleEditCard={handleEditCard}
+              // handleAddCard={handleAddCard}
             />
           </Route>
 
