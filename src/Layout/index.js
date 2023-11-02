@@ -10,6 +10,7 @@ import {
   deleteDeck,
   updateDeck,
   updateCard,
+  createCard,
 } from "../utils/api/index";
 import ViewDeck from "./ViewDeck";
 
@@ -24,6 +25,7 @@ function Layout() {
 
   // Handlers for decks
   const history = useHistory();
+
   const handleCreateDeck = async (formData) => {
     const { id } = await createDeck(formData); // response returns { name, description, id }
     setDeckUpdateToggle(!deckUpdateToggle); // Trigger useEffect to fetch API deck data & re-render
@@ -59,15 +61,21 @@ function Layout() {
 
   // Handlers for Cards
   const handleEditCard = async (card, formData) => {
-    const { front, back, ...partialUpdatedDeck } = card;
+    const { front, back, ...partialUpdatedCard } = card;
     const updatedCardObj = {
-      ...partialUpdatedDeck,
+      ...partialUpdatedCard,
       front: formData.front,
       back: formData.back,
     };
     const updatedCardFromAPI = await updateCard(updatedCardObj);
     setDeckUpdateToggle(!deckUpdateToggle); // Cause re-fetch of API for UI refresh
     history.push(`/decks/${updatedCardFromAPI.deckId}`);
+  };
+
+  const handleAddCard = async (deckId, formData) => {
+    await createCard(deckId, formData); // response returns { name, description, id }
+    setDeckUpdateToggle(!deckUpdateToggle); // Trigger useEffect to fetch API deck data & re-render
+    history.push(`/decks/${deckId}/cards/new`);
   };
 
   // Initial data fetch for list of user's decks from API:
@@ -101,7 +109,7 @@ function Layout() {
               handleEditDeck={handleEditDeck}
               deckUpdateToggle={deckUpdateToggle}
               handleEditCard={handleEditCard}
-              // handleAddCard={handleAddCard}
+              handleAddCard={handleAddCard}
             />
           </Route>
 

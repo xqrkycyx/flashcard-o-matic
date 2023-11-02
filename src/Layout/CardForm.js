@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
-function CardForm({ card = null, handleFormAction }) {
+function CardForm({ card = null, deckId = null, handleFormAction }) {
   const initialFormState = {
     // If form receives a Card object as a prop (i.e., when
     // building the "Edit" form for an existing card), set
@@ -27,13 +27,14 @@ function CardForm({ card = null, handleFormAction }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Call handlers differently for Edit vs Create
-    if (card) {
+    // Call handlers differently for Edit vs Add
+    if (card !== null) {
+      // Edit Card
       handleFormAction(card, formData);
     } else {
-      handleFormAction(formData);
+      // Add New Card (requires Deck Id)
+      handleFormAction(deckId, formData);
     }
-    // handleFormAction(formData);
     setFormData({ ...initialFormState });
   };
 
@@ -44,7 +45,8 @@ function CardForm({ card = null, handleFormAction }) {
           <Form.Label>Front</Form.Label>
           <Form.Control
             required
-            type="text"
+            as="textarea"
+            rows={4}
             placeholder="Front side of card"
             controlid="front"
             name="front"
@@ -64,9 +66,9 @@ function CardForm({ card = null, handleFormAction }) {
             value={formData.back}
           />
         </Form.Group>
-        <Link to={`/decks/${card.deckId}`}>
+        <Link to={`/decks/${deckId !== null ? deckId : card.deckId}`}>
           <Button variant="secondary" className="m-2">
-            Cancel
+            {card !== null ? `Cancel` : `Done`}
           </Button>
         </Link>
 
