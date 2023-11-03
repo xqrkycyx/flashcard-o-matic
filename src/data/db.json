@@ -9,6 +9,11 @@
       "name": "React Router",
       "description": "React Router is a collection of navigational components that compose declaratively with your application.",
       "id": 2
+    },
+    {
+      "name": "RuPaul's Drag Race",
+      "description": "All the gags, shade, and high-heeled eleganza you can handle, henny",
+      "id": 3
     }
   ],
   "cards": [
@@ -43,11 +48,28 @@
       "id": 5
     },
     {
-      "cards": [],
-      "front": "b",
-      "back": "b",
+      "front": "What method is used in React to change the state of a component",
+      "back": "In React, the setState() method is employed to modify the state of a component, triggering re-rendering when the state changes",
       "deckId": 1,
       "id": 7
+    },
+    {
+      "front": "Which season of RuPaul's Drag Race introduced the \"Snatch Game\" challenge?",
+      "back": "The \"Snatch Game\" challenge was introduced in Season 2 and has since become a beloved fan favorite.\n\n",
+      "deckId": 3,
+      "id": 8
+    },
+    {
+      "front": "What is the signature phrase RuPaul uses to introduce the runway segment of the show?",
+      "back": "\"Category is...\" ",
+      "deckId": 3,
+      "id": 9
+    },
+    {
+      "front": "Which contestant holds the record for the most challenge wins in a single season of RuPaul's Drag Race?",
+      "back": "Shea Couleé holds the record for the most challenge wins in a single season, with a total of four wins in Season 5 of All Stars.",
+      "deckId": 3,
+      "id": 10
     }
   ]
 }
