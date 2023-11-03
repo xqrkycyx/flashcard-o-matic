@@ -23,12 +23,12 @@ export const DeckListItem = ({
           <div>
             <Link to={`/decks/${id}`}>
               <Button variant="secondary" className="m-2" tabIndex={-1}>
-                <EyeFill /> View
+                <EyeFill style={{ "margin-right": "3px" }} /> View
               </Button>
             </Link>
             <Link to={`/decks/${id}/study`}>
               <Button variant="primary" className="m-2" tabIndex={-1}>
-                <BookHalf /> Study
+                <BookHalf style={{ "margin-right": "5px" }} /> Study
               </Button>
             </Link>
           </div>

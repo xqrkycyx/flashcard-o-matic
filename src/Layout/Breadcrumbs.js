@@ -8,7 +8,7 @@ function Breadcrumbs({ additionalItems = null }) {
   return (
     <Breadcrumb>
       <Breadcrumb.Item href={`/`}>
-        <HouseDoorFill />
+        <HouseDoorFill style={{ "margin-right": "5px" }} />
         Home
       </Breadcrumb.Item>
 

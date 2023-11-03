@@ -8,7 +8,7 @@ function CreateDeckButton() {
   return (
     <Link to={"/decks/new"}>
       <Button variant="secondary" className="m-2" tabIndex={-1}>
-        <PlusLg />
+        <PlusLg style={{ "margin-right": "5px" }} />
         Create Deck
       </Button>
     </Link>

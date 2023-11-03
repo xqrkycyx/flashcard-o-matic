@@ -41,7 +41,7 @@ function StudyDeck({ deck }) {
           </Card.Text>
           <Link to={`/decks/${deck.id}/cards/new`}>
             <Button variant="primary" className="m-2" tabIndex={-1}>
-              <PlusLg />
+              <PlusLg style={{ "margin-right": "5px" }} />
               AddCards
             </Button>
           </Link>

@@ -23,21 +23,21 @@ export const DeckInformation = ({
         <div>
           <Link to={`${url}/edit`}>
             <Button variant="secondary" className="m-2" tabIndex={-1}>
-              <PencilFill />
+              <PencilFill style={{ "margin-right": "8px" }} />
               Edit
             </Button>
           </Link>
 
           <Link to={`${url}/study`}>
             <Button variant="primary" className="m-2" tabIndex={-1}>
-              <BookHalf />
+              <BookHalf style={{ "margin-right": "8px" }} />
               Study
             </Button>
           </Link>
 
           <Link to={`${url}/cards/new`}>
             <Button variant="primary" className="m-2" tabIndex={-1}>
-              <PlusLg />
+              <PlusLg style={{ "margin-right": "5px" }} />
               AddCards
             </Button>
           </Link>
