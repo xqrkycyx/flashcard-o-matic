@@ -18,7 +18,6 @@ function CardForm({ card = null, deckId = null, handleFormAction }) {
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
-    console.log(`name: ${name} / value: ${value}`);
     setFormData({
       ...formData,
       [name]: value,
