@@ -22,12 +22,12 @@ export const DeckListItem = ({
         <div className="d-flex justify-content-between">
           <div>
             <Link to={`/decks/${id}`}>
-              <Button variant="secondary" className="m-2">
+              <Button variant="secondary" className="m-2" tabIndex={-1}>
                 <EyeFill /> View
               </Button>
             </Link>
             <Link to={`/decks/${id}/study`}>
-              <Button variant="primary" className="m-2">
+              <Button variant="primary" className="m-2" tabIndex={-1}>
                 <BookHalf /> Study
               </Button>
             </Link>

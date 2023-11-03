@@ -40,7 +40,7 @@ function StudyDeck({ deck }) {
             in this deck.
           </Card.Text>
           <Link to={`/decks/${deck.id}/cards/new`}>
-            <Button variant="primary" className="m-2">
+            <Button variant="primary" className="m-2" tabIndex={-1}>
               <PlusLg />
               AddCards
             </Button>

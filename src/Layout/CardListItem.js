@@ -17,7 +17,7 @@ export const CardListItem = ({ front, back, id, handleDeleteCard }) => {
         </div>
         <div className="d-flex float-right">
           <Link to={`${url}/cards/${id}/edit`}>
-            <Button variant="secondary" className="m-2">
+            <Button variant="secondary" className="m-2" tabIndex={-1}>
               <PencilFill /> Edit
             </Button>
           </Link>

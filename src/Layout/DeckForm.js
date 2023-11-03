@@ -64,7 +64,7 @@ function DeckForm({ deck = null, handleFormAction }) {
           />
         </Form.Group>
         <Link to={deck !== null ? `/decks/${deck.id}` : "/"}>
-          <Button variant="secondary" className="m-2">
+          <Button variant="secondary" className="m-2" tabIndex={-1}>
             Cancel
           </Button>
         </Link>

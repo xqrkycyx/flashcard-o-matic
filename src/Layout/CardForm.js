@@ -66,7 +66,7 @@ function CardForm({ card = null, deckId = null, handleFormAction }) {
           />
         </Form.Group>
         <Link to={`/decks/${deckId !== null ? deckId : card.deckId}`}>
-          <Button variant="secondary" className="m-2">
+          <Button variant="secondary" className="m-2" tabIndex={-1}>
             {card !== null ? `Cancel` : `Done`}
           </Button>
         </Link>

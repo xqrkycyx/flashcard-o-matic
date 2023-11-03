@@ -22,21 +22,21 @@ export const DeckInformation = ({
       <div className="d-flex justify-content-between">
         <div>
           <Link to={`${url}/edit`}>
-            <Button variant="secondary" className="m-2">
+            <Button variant="secondary" className="m-2" tabIndex={-1}>
               <PencilFill />
               Edit
             </Button>
           </Link>
 
           <Link to={`${url}/study`}>
-            <Button variant="primary" className="m-2">
+            <Button variant="primary" className="m-2" tabIndex={-1}>
               <BookHalf />
               Study
             </Button>
           </Link>
 
           <Link to={`${url}/cards/new`}>
-            <Button variant="primary" className="m-2">
+            <Button variant="primary" className="m-2" tabIndex={-1}>
               <PlusLg />
               AddCards
             </Button>
