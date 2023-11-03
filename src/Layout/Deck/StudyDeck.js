@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Breadcrumbs from "./Breadcrumbs";
+import Breadcrumbs from "../Breadcrumbs";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";

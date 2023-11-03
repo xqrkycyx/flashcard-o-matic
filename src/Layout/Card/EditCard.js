@@ -1,6 +1,6 @@
 import React from "react";
 import CardForm from "./CardForm";
-import Breadcrumbs from "./Breadcrumbs";
+import Breadcrumbs from "../Breadcrumbs";
 import { useParams } from "react-router-dom";
 
 function EditCard({ deck, handleEditCard }) {

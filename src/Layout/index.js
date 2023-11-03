@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import Header from "./Header";
 import NotFound from "./NotFound";
-import DeckList from "./DeckList";
-import CreateDeck from "./CreateDeck";
+import DeckList from "./Deck/DeckList";
+import CreateDeck from "./Deck/CreateDeck";
 import {
   listDecks,
   createDeck,
@@ -13,7 +13,7 @@ import {
   createCard,
   deleteCard,
 } from "../utils/api/index";
-import ViewDeck from "./ViewDeck";
+import ViewDeck from "./Deck/ViewDeck";
 
 function Layout() {
   // State of user's decks

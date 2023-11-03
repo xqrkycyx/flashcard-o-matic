@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Route, useParams, useRouteMatch } from "react-router-dom";
-import NotFound from "./NotFound";
-import { readDeck } from "../utils/api";
+import NotFound from "../NotFound";
+import { readDeck } from "../../utils/api";
 import StudyDeck from "./StudyDeck";
 import EditDeck from "./EditDeck";
-import AddCard from "./AddCard";
+import AddCard from "../Card/AddCard";
 import DeckInformation from "./DeckInformation";
-import EditCard from "./EditCard";
+import EditCard from "../Card/EditCard";
 
 function ViewDeck({
   handleDeleteDeck,

@@ -1,7 +1,7 @@
 import React from "react";
-import Breadcrumbs from "./Breadcrumbs";
+import Breadcrumbs from "../Breadcrumbs";
 import { Link } from "react-router-dom";
-import CardList from "./CardList";
+import CardList from "../Card/CardList";
 import { TrashFill, PencilFill, BookHalf, PlusLg } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import { useRouteMatch } from "react-router-dom";

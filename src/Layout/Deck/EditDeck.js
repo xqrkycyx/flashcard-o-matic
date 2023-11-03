@@ -1,6 +1,6 @@
 import React from "react";
 import DeckForm from "./DeckForm";
-import Breadcrumbs from "./Breadcrumbs";
+import Breadcrumbs from "../Breadcrumbs";
 
 function EditDeck({ deck, handleEditDeck }) {
   return (
