@@ -33,6 +33,7 @@ The finished application meets the following requirements for the users of the f
 1. [**User can add a new flashcard to a deck**](https://github.com/xqrkycyx/flashcard-o-matic/commit/56bb5306bc3d47e3713dc5a60bf4fc3766c48845) (_available at `/decks/:deckId/cards/new`_)
 1. [**User can delete a flashcard from a deck**](https://github.com/xqrkycyx/flashcard-o-matic/commit/47c47206607e2bb5bde8866dc75c6084ec3ba06c) (_functionality to manage flashcards within a single deck_)
 1. [**User can study all the cards in a deck**](https://github.com/xqrkycyx/flashcard-o-matic/commit/bea00341b231b68e8c0604d2a78cc5627aec9922) (_accessible at `/decks/:deckId:/study`_)
+1. [**After studying a deck, user can choose to start over or return to the home screen**](https://github.com/xqrkycyx/flashcard-o-matic/commit/fcb8778ba8f5fc80450af65931a4fd9c6fa55364) (_functionality to prompt user to restart cards_)
 
 ## Installation
 
