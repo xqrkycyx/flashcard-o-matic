@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Breadcrumbs from "../Breadcrumbs";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { PlusLg } from "react-bootstrap-icons";
 
 function StudyDeck({ deck }) {
+  const history = useHistory();
+  const numberOfCards = deck.cards.length;
+
   const [flipped, setFlipped] = useState(false);
   const [activeCardIndex, setActiveCardIndex] = useState(0);
 
   // Click handlers for Study UI:
   function handleFlipCard() {
-    setFlipped(!flipped);
+    setFlipped(() => !flipped);
   }
 
   function handleNextCard() {
@@ -24,7 +27,24 @@ function StudyDeck({ deck }) {
     setActiveCardIndex(activeCardIndex - 1);
   }
 
-  const numberOfCards = deck.cards.length;
+  function resetDeck() {
+    setFlipped(false);
+    setActiveCardIndex(0);
+  }
+
+  useEffect(() => {
+    if (flipped && activeCardIndex + 1 === numberOfCards) {
+      const restartCardsAnswer = window.confirm(
+        "Restart cards?\n\nClick cancel to return to the home page."
+      );
+      if (restartCardsAnswer) {
+        resetDeck();
+      } else {
+        history.push(`/`);
+      }
+    }
+  }, [flipped, activeCardIndex, history, numberOfCards]);
+
   let studyPageContent;
   if (numberOfCards < 3) {
     // If user has fewer than 3 cards, show "not enough cards" screen:
